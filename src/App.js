@@ -42,7 +42,8 @@ class App extends Component {
     }
 
     this.setState({
-      lists: datas
+      lists: datas,
+      act: 0
     })
 
     this.refs.myForm.reset();
@@ -86,24 +87,39 @@ class App extends Component {
     let datas = this.state.lists;
     return (
       <div className="App">
-        <h2>{this.state.title}</h2>
-
+        <br></br>
+      <h2 className="center"> {this.state.title}</h2>
+        <br></br>
+        <hr></hr>
         <form ref="myForm" className="myForm">
-          <input type="text" ref="titre" placeholder="titre de l'evenement" className="formField" />
-          <input type="text" ref="description" placeholder="courte description" className="formField" />
-          <input type="text" ref="date" placeholder="date de l'evenement" className="formField" />
-         
-          <button type="button" class="btn btn-dnager"  onClick={(e)=>this.fSubmit(e)} className="myButton">submit </button>
+          
+          <input type="text" ref="titre" placeholder="Titre de l'evenement" className="formField" />
+          <input type="text" ref="description" placeholder="Courte description" className="formField" />
+          <input type="date" ref="date" placeholder="Date de l'événement" className="formField" />   
+          <button  onClick={(e)=>this.fSubmit(e)} className="myButton">Ajouter à la liste  </button>
         </form>
 
         <pre>
-        {datas.map((data, i) =>
-            <li key={i} className="myList">
-              {i+1}. {data.titre}, {data.description}, {data.date}
-              <button onClick={()=>this.fRemove(i)} className="myListButton">remove </button>
-              <button onClick={()=>this.fEdit(i)} className="myListButton">edit </button>
-            </li>
-          )}
+
+  <table>
+    <tr>
+      <th><b>Titre</b></th>
+      <th><b>Description</b></th>
+      <th><b>Date de l'événement</b></th>
+      <th> <b>Options</b> </th>
+     
+    </tr>
+    {datas.map((data, i) =>
+    <tr  key={i} className="myList">
+    <td>{data.titre}</td>
+      <td>{data.description}</td>
+      <td>{data.date}</td>
+      <td> <button onClick={()=>this.fRemove(i)} className="myListButton">Supprimer </button>
+      <button onClick={()=>this.fEdit(i)} className="myListButton">Modifier </button></td>
+    </tr>
+    
+    )}    
+  </table>
 
         </pre>
       </div>
@@ -111,4 +127,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App; 

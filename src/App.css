@@ -1,12 +1,12 @@
 .App {
   margin: auto;
-  width: 50%;
+  width: 70%;
   background-color: #d9e5eb;
 }
 
 .myForm{
   width: 90%;
-  background-color: #62686b;
+  background-color: #e9eef0;
   border-radius: 5px;
   padding: 20px;
 }
@@ -21,9 +21,13 @@
   box-sizing: border-box;
 }
 
+.center {
+  text-align: center;
+  
+}
 .myButton{
   width: 100%;
-  background-color: #0b7dda;
+  background-color: #1f97fa;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -45,3 +49,14 @@
   margin: 3px 5px;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
