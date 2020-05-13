@@ -5,10 +5,11 @@
 }
 
 .myForm{
-  width: 90%;
+ 
   background-color: #e9eef0;
   border-radius: 5px;
   padding: 20px;
+  text-align: center;
 }
 
 .formField{

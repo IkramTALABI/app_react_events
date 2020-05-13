@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import City from './City' ;
 
-class App extends Component {
+class App extends React.Component {
 
   constructor(props){
     super(props);
@@ -9,9 +10,30 @@ class App extends Component {
       title: 'List des événements',
       act: 0,
       index: '',
-      lists: []
+      lists: [],
+      temperature : '',
+      error : '' ,
+      isBusy : false
     }
   } 
+
+  getTemperature = (city)=> {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=d885aa1d783fd13a55050afeef620fcb';
+    this.setState({
+      isBusy : true 
+    })
+    fetch(url).then(response=>{
+      return response.json();
+    }).then(data=>{
+      const kelvin = data.main.temp ;
+      const celcius = kelvin - 273.15 ;
+      this.setState({
+        temperature : celcius ,
+        isBusy : false 
+      })
+    })
+    
+  }
 
   componentDidMount(){
     this.refs.titre.focus();
@@ -84,10 +106,29 @@ class App extends Component {
 
 
   render() {
+    let data = null ;
+    if(this.state.isBusy && !this.state.error){
+      data = <p  style={{textAlign : 'center'}}> Loading ... </p>
+    } else if (this.state.error) {
+      data =  <p  style={{textAlign : 'center'}}>Something Went Wrong : {this.state.error}</p>
+    } else if(this.state.temperature !== '') {
+      data = <p  style={{textAlign : 'center'}}>Temperature is : {this.state.temperature} degree celcius.</p>
+    }
+
     let datas = this.state.lists;
     return (
       <div className="App">
+         <br></br>
+         <h2 className="center"> Afficher la temperature</h2>
         <br></br>
+        <hr></hr>
+     <div className="myForm">
+     <City  getTemperature={this.getTemperature}/> <br/>
+        {data}
+     </div>
+      
+      
+
       <h2 className="center"> {this.state.title}</h2>
         <br></br>
         <hr></hr>
@@ -122,8 +163,11 @@ class App extends Component {
   </table>
 
         </pre>
+        
       </div>
-    );
+);
+
+    
   }
 }
 
