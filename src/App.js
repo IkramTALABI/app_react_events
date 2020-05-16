@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import City from './City' ;
+import City from './components/City' ;
+import Countries  from 'react-select-country';
+import { Button } from 'react-bootstrap'; 
+import Menu from './components/Menu';
+import { BrowserRouter } from 'react-router';
 
 class App extends React.Component {
 
   constructor(props){
     super(props);
     this.state={
-      title: 'List des événements',
+      title: 'Liste des événements',
       act: 0,
       index: '',
       lists: [],
@@ -115,9 +119,12 @@ class App extends React.Component {
       data = <p  style={{textAlign : 'center'}}>Temperature is : {this.state.temperature} degree celcius.</p>
     }
 
-    let datas = this.state.lists;
+    let datas = this.state.lists; 
     return (
+      
       <div className="App">
+         <Menu/> 
+      
          <br></br>
          <h2 className="center"> Afficher la temperature</h2>
         <br></br>
@@ -137,14 +144,16 @@ class App extends React.Component {
           <input type="text" ref="titre" placeholder="Titre de l'evenement" className="formField" />
           <input type="text" ref="description" placeholder="Courte description" className="formField" />
           <input type="date" ref="date" placeholder="Date de l'événement" className="formField" />   
-          <button  onClick={(e)=>this.fSubmit(e)} className="myButton">Ajouter à la liste  </button>
+    
+          <Button variant="outline-primary" onClick={(e)=>this.fSubmit(e)}   size="10" block> Ajouter à la liste </Button>{' '}
+      
         </form>
 
         <pre>
 
-  <table>
+  <table> 
     <tr>
-      <th><b>Titre</b></th>
+      <th><b>Titre de l'événement</b></th>
       <th><b>Description</b></th>
       <th><b>Date de l'événement</b></th>
       <th> <b>Options</b> </th>
@@ -155,8 +164,10 @@ class App extends React.Component {
     <td>{data.titre}</td>
       <td>{data.description}</td>
       <td>{data.date}</td>
-      <td> <button onClick={()=>this.fRemove(i)} className="myListButton">Supprimer </button>
-      <button onClick={()=>this.fEdit(i)} className="myListButton">Modifier </button></td>
+      <td> 
+      <Button variant="outline-info" onClick={()=>this.fEdit(i)}>Modifier</Button>
+      <Button variant="outline-danger" onClick={()=>this.fRemove(i)}>Supprimer</Button>
+</td>
     </tr>
     
     )}    

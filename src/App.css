@@ -1,6 +1,6 @@
 .App {
   margin: auto;
-  width: 70%;
+  width: 100%;
   background-color: #d9e5eb;
 }
 
@@ -9,6 +9,7 @@
   background-color: #e9eef0;
   border-radius: 5px;
   padding: 20px;
+  margin: 40px 0;
   text-align: center;
 }
 
@@ -20,6 +21,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  
 }
 
 .center {
@@ -27,13 +29,29 @@
   
 }
 .myButton{
-  width: 100%;
-  background-color: #1f97fa;
-  color: white;
+  width: 50%;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
+
+  cursor: pointer;
+}
+
+.myButtonEdit{
+  background-color: #1ffa73d2;
+  height: auto;
+  width: auto;
   border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.myButtonDelete{
+  background-color: #f52f0ce8;
+  height: auto;
+  width: auto;
+  border-radius: 4px;
+  color: white;
   cursor: pointer;
 }
 
